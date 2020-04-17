@@ -17,6 +17,10 @@ function love.load()
 		['particle'] = love.graphics.newImage('graphics/particle.png')
 	}
 
+	gFrames = {
+		['paddles'] =  GenerateQuadsPaddles(gTextures['main'])
+	}
+
 	gSounds = {
 		--Sound Effects
 		['brick-hit-1'] = love.audio.newSource('sounds/brick-hit-1.wav', 'static'),
@@ -48,7 +52,8 @@ function love.load()
 	})
 
 	gStateMachine = StateMachine {
-		['start'] = function() return StartState() end
+		['start'] = function() return StartState() end,
+		['play'] = function() return PlayState() end
 	}
 	gStateMachine:change('start')
 
