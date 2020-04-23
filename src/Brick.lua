@@ -3,44 +3,45 @@ Brick = Class{}
 paletteColors = {
 
 	[1] = {
-		['r'] = 99,
-		['g'] = 155,
-		['b'] = 255
+		['r'] = 0,
+		['g'] = 0,
+		['b'] = 255,
 	},
 
 	[2] = {
-		['r'] = 106,
-		['g'] = 190,
-		['b'] = 47
+		['r'] = 0,
+		['g'] = 255,
+		['b'] = 0,
 	},
 
 	[3] = {
-		['r'] = 217,
-		['g'] = 87,
-		['b'] = 99
+		['r'] = 255,
+		['g'] = 0,
+		['b'] = 0,
 	},
 
 	[4] = {
-		['r'] = 215,
-		['g'] = 123,
-		['b'] = 186
+		['r'] = 255,
+		['g'] = 0,
+		['b'] = 255
 	},
 
 	[5] = {
-		['r'] = 251,
-		['g'] = 242,
-		['b'] = 54
+		['r'] = 255,
+		['g'] = 255,
+		['b'] = 0
 	}
 }
 
 function Brick:init(x, y)
+	self.color = 1
+	self.tier = 0
+
 	self.x = x
 	self.y = y
 	self.width = 32
 	self.height = 16
 
-	self.color = 1
-	self.tier = 0
 
 	self.inPlay = true
 
@@ -48,22 +49,22 @@ function Brick:init(x, y)
 
 	self.psystem:setParticleLifetime(0.5, 1)
 	self.psystem:setLinearAcceleration(-15, 0, 15, 80)
-	self.psystem:setAreaSpread('normal', 10, 10)
+	self.psystem:setEmissionArea('normal', 10, 10)
 end
 
 function Brick:hit()
 
-	self.psystem:setColors(
+    self.psystem:setColors(
 		paletteColors[self.color].r,
 		paletteColors[self.color].g,
 		paletteColors[self.color].b,
-		55 * (self.tier + 1),
+		0.3,
 		paletteColors[self.color].r,
 		paletteColors[self.color].g,
 		paletteColors[self.color].b,
-		0
-	)
-	self.psystem:emit(64)
+		0.1
+    )
+    self.psystem:emit(64)
 
 	gSounds['brick-hit-2']:stop()
 	gSounds['brick-hit-2']:play()

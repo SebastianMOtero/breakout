@@ -18,15 +18,15 @@ function EnterHighScoreState:update(dt)
 	if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
 		local name = string.char(chars[1]) .. string.char(chars[2]) .. string.char(chars[3])
 
-		for i = 10, self.scoreIndex, -1 do
-			self.highScores[i + 1] = {
-				name = self.highScores[i].name,
-				score = self.highScores[i].score
-			}
-		end
+        for i = 10, self.scoreIndex, -1 do
+            self.highScores[i + 1] = {
+                name = self.highScores[i].name,
+                score = self.highScores[i].score
+            }
+        end
 
-		self.highScores[self.scoreIndex].name = name
-		self.highScores[self.scoreIndex].score = self.score
+        self.highScores[self.scoreIndex].name = name
+        self.highScores[self.scoreIndex].score = self.score
 
 		local scoresStr = ''
 
@@ -70,19 +70,19 @@ function EnterHighScoreState:render()
 	love.graphics.setFont(gFonts['large'])
 
 	if highlightedChar == 1 then
-		love.graphics.setColor(103, 255, 255, 255)
+		love.graphics.setColor(0, 255, 0, 1)
 	end
 	love.graphics.print(string.char(chars[1]), VIRTUAL_WIDTH / 2 - 28, VIRTUAL_HEIGHT / 2)
 	love.graphics.setColor(255, 255, 255, 255)
 
 	if highlightedChar == 2 then
-		love.graphics.setColor(103, 255, 255, 255)
+		love.graphics.setColor(0, 255, 0, 1)
 	end
 	love.graphics.print(string.char(chars[2]), VIRTUAL_WIDTH / 2 - 6, VIRTUAL_HEIGHT / 2)
 	love.graphics.setColor(255, 255, 255, 255)
 
 	if highlightedChar == 3 then
-		love.graphics.setColor(103, 255, 255, 255)
+		love.graphics.setColor(0, 255, 0, 1)
 	end
 	love.graphics.print(string.char(chars[3]), VIRTUAL_WIDTH / 2 + 20, VIRTUAL_HEIGHT / 2)
 	love.graphics.setColor(255, 255, 255, 255)

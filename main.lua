@@ -144,7 +144,7 @@ end
 function loadHighScores()
 	love.filesystem.setIdentity('breakout')
 
-	if not love.filesystem.exists('breakout.lst') then
+	if love.filesystem.getInfo('breakout.lst') == nil then
 		local scores = ''
 		for i = 10, 1, -1 do
 			scores = scores .. 'CTO\n'
@@ -152,6 +152,15 @@ function loadHighScores()
 		end
 		love.filesystem.write('breakout.lst', scores)
 	end
+
+	-- if not love.filesystem.exists('breakout.lst') then
+	-- 	local scores = ''
+	-- 	for i = 10, 1, -1 do
+	-- 		scores = scores .. 'CTO\n'
+	-- 		scores = scores .. tostring(i * 1000) .. '\n'
+	-- 	end
+	-- 	love.filesystem.write('breakout.lst', scores)
+	-- end
 
 	local name = true
 	local currentName = nil
